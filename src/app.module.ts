@@ -1,23 +1,36 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { MulterModule } from '@nestjs/platform-express';
 import { JwtModule } from '@nestjs/jwt';
+
+
 import { dbUrl, secret } from './utils/constants';
 import { join } from 'path/posix';
-
-import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
-import { callbackify } from 'util';
+
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+import { User, UserSchema } from './model/user.schema';
+import { UserController } from './controller/user.controller';
+import { UserService } from './service/user.service';
+
+import { Video, VideoSchema } from './model/video.schema';
+import { VideoController } from './controller/video.controller';
+import { VideoService } from './service/video.service';
+
+
 
 require('dotenv').config()
 
 @Module({
     imports: [
         MongooseModule.forRoot(dbUrl),
+        MongooseModule.forFeature([{ name: User.name, schema: UserSchema}]),
+        MongooseModule.forFeature([{ name: Video.name, schema: VideoSchema}]),
 
         MulterModule.register({
             storage: diskStorage({
@@ -38,7 +51,7 @@ require('dotenv').config()
             rootPath: join(__dirname, '..', 'public')
     })
     ],
-    controllers: [AppController],
-    providers: [AppService],
+    controllers: [AppController, UserController, VideoController],
+    providers: [AppService, UserService, VideoService],
 })
 export class AppModule { }
