@@ -30,7 +30,7 @@ export class Video {
     uploadDate: Date;
     
     @Prop({type: mongoose.Schema.ObjectId, ref: "User"})
-    uploadBy: User;
+    uploadedBy: User;
 }
 
 export const VideoSchema = SchemaFactory.createForClass(Video)
