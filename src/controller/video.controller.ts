@@ -58,7 +58,7 @@ export class VideoController {
     @Delete('/:id')
     async delete(@Res() response, @Param('id') id) {
         await this.videoService.deleteVideo(id);
-        return response.status(HttpStatus.OK).json({ user: null });
+        return response.status(HttpStatus.OK).json({ video: null });
     }
 }
 

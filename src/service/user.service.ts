@@ -4,7 +4,6 @@ import { Model } from "mongoose";
 import { User, UserDocument } from "../model/user.schema";
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { response } from "express";
 
 
 @Injectable()
@@ -44,6 +43,10 @@ export class UserService {
             return new HttpException('Incorrect username or password', HttpStatus.UNAUTHORIZED)
         }
         return new HttpException('Incorrect username or password', HttpStatus.UNAUTHORIZED)
+    }
+
+    async getAllUsers() : Promise<any> {
+        return await this.userModel.find().populate("email").exec();
     }
 
     async getOne(email): Promise<User> {
