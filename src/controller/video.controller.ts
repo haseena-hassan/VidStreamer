@@ -3,7 +3,7 @@ import { FileFieldsInterceptor } from "@nestjs/platform-express";
 import { Video } from "src/model/video.schema";
 import { VideoService } from "src/service/video.service";
 
-@Controller('/app/v1/video')
+@Controller('/api/v1/video')
 export class VideoController {
 
     constructor(

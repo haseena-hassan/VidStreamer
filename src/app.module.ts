@@ -22,8 +22,6 @@ import { VideoService } from './service/video.service';
 import { AuthMiddleware } from './app.middleware';
 
 
-
-
 @Module({
     imports: [
         MongooseModule.forRoot(dbUrl),

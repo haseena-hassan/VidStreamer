@@ -1,4 +1,7 @@
 require('dotenv').config()
 
-export const secret = process.env.JWT_TOKEN;
-export const dbUrl = process.env.DATABASE_URL;
+const secret = process.env.JWT_TOKEN;
+const dbUrl = process.env.DATABASE_URL;
+const port = process.env.PORT;
+
+export {secret, dbUrl, port};
