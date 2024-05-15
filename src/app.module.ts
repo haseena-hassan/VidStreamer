@@ -55,7 +55,7 @@ export class AppModule {
     
     configure(consumer: MiddlewareConsumer) {
         consumer.apply(AuthMiddleware).exclude({
-            path: 'api/v1/video/:id',
+            path: 'api/v1/feed',
             method: RequestMethod.GET
         })
     }
