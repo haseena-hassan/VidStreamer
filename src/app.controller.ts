@@ -6,12 +6,12 @@ import { json } from 'stream/consumers';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('/api/hello')
+  @Get('/api/v1/hello')
   getHello(): string {
     return this.appService.getHello();
   }
 
-  @Get('/api/demo') 
+  @Get('/api/v1/demo') 
   getDemoProducts() : object {
     return {
       status: "success",
